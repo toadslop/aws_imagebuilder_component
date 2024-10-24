@@ -7,9 +7,11 @@ use std::{
 
 mod action;
 mod conditional;
+mod r#loop;
 
 pub use action::Action;
 pub use conditional::Conditional;
+pub use r#loop::{Loop, LoopType};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Default)]
 #[serde(rename_all = "camelCase")]
@@ -76,6 +78,7 @@ pub struct Step {
     r#if: Option<If>,
     #[serde(flatten)]
     action: Action,
+    r#loop: Option<Loop>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]

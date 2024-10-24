@@ -75,11 +75,46 @@ phases:
           and:
             - stringEquals: 'test_string'
               value: 'test_string'
-            # - numberEquals: 1
-            #   value: 1
+            - numberEquals: 1
+              value: 1
         inputs:
           commands:
               - sudo zypper refresh
               - sudo zypper install -y unzip
 
+      - name: OtherTest
+        action: ExecuteBash
+        loop:
+          name: "string"
+          for:
+            start: 0
+            end: 4
+            updateBy: 1
+        inputs:
+          commands:
+              - sudo zypper refresh
+              - sudo zypper install -y unzip
 
+      - name: ForEachDelim
+        action: ExecuteBash
+        loop:
+          name: "string"
+          forEach:
+            list: "string"
+            delimiter: ".,;:\n\t -_"
+        inputs:
+          commands:
+              - sudo zypper refresh
+              - sudo zypper install -y unzip
+
+      - name: "DownloadAllBinaries"
+        action: "S3Download"
+        loop:
+          name: MultiArgLoop
+          forEach:
+            - "bin1.exe"
+            - "bin10.exe"
+            - "bin5.exe"
+        inputs:
+          - source: "s3://bucket/{{ loop.value }}"
+            destination: "c:\\temp\\{{ loop.value }}"
