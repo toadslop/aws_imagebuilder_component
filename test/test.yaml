@@ -1,6 +1,15 @@
 name: LinuxBin
 description: Download and run a custom Linux binary file.
 schemaVersion: 1.0
+parameters:
+  - Source:
+      type: string
+      default: 'https://awscli.amazonaws.com/AWSCLIV2.msi'
+      description: The AWS CLI installer source URL.
+constants:
+  - Source:
+      type: string
+      value: https://awscli.amazonaws.com/AWSCLIV2.msi
 phases:
   - name: build
     steps:

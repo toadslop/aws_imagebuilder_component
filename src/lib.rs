@@ -1,6 +1,9 @@
 use action::Action;
 use serde::{Deserialize, Serialize};
-use std::ops::{Deref, DerefMut};
+use std::{
+    collections::HashMap,
+    ops::{Deref, DerefMut},
+};
 
 mod action;
 
@@ -11,6 +14,28 @@ pub struct Component {
     pub description: Option<String>,
     pub schema_version: SchemaVersion,
     pub phases: Vec<Phase>,
+    pub parameters: Vec<HashMap<String, Parameter>>,
+    pub constants: Vec<HashMap<String, Constant>>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+pub struct Parameter {
+    r#type: ParamType,
+    default: Option<String>,
+    description: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+pub struct Constant {
+    r#type: ParamType,
+    default: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+#[serde(rename_all = "camelCase")]
+pub enum ParamType {
+    #[default]
+    String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
