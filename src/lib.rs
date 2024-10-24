@@ -1,4 +1,4 @@
-use action::Action;
+use conditional::If;
 use serde::{Deserialize, Serialize};
 use std::{
     collections::HashMap,
@@ -6,6 +6,10 @@ use std::{
 };
 
 mod action;
+mod conditional;
+
+pub use action::Action;
+pub use conditional::Conditional;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 #[serde(rename_all = "camelCase")]
@@ -69,6 +73,7 @@ pub struct Step {
     timeout_seconds: Option<u32>,
     on_failure: Option<FailurePolicy>,
     max_attempts: Option<u32>,
+    r#if: Option<If>,
     #[serde(flatten)]
     action: Action,
 }

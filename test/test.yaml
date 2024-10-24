@@ -46,3 +46,37 @@ phases:
               value: value-1
             - name: parameter-2
               value: value-2
+      - name: InstallUnzipAptGet
+        action: ExecuteBash
+        if:
+          and:
+            - binaryExists: 'apt-get'
+            - not:
+                binaryExists: 'unzip'
+        inputs:
+          commands:
+              - sudo apt-get update
+              - sudo apt-get install -y unzip
+
+      - name: InstallUnzipYum
+        action: ExecuteBash
+        if:
+          and:
+              - binaryExists: 'yum'
+              - not:
+                  binaryExists: 'unzip'
+        inputs:
+          commands:
+              - sudo yum install -y unzip
+
+      - name: InstallUnzipZypper
+        action: ExecuteBash
+        if:
+          and:
+              - binaryExists: 'zypper'
+              - not:
+                  binaryExists: 'unzip'
+        inputs:
+          commands:
+              - sudo zypper refresh
+              - sudo zypper install -y unzip
