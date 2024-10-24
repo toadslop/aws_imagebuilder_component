@@ -11,7 +11,7 @@ mod conditional;
 pub use action::Action;
 pub use conditional::Conditional;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Component {
     pub name: Option<String>,
@@ -51,7 +51,7 @@ pub enum SchemaVersion {
     Other(String),
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Phase {
     name: PhaseName,
     steps: Vec<Step>,
@@ -66,7 +66,7 @@ pub enum PhaseName {
     Other(String),
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Step {
     name: String,

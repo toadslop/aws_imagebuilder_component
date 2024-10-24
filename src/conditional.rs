@@ -6,7 +6,7 @@ mod logical;
 
 pub use logical::Logical;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct If {
     #[serde(flatten)]
     expression: Conditional,
@@ -14,7 +14,7 @@ pub struct If {
     elxe: Option<StepAction>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(untagged)]
 pub enum Conditional {
     Logical(Logical),

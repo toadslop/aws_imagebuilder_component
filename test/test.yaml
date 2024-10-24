@@ -55,16 +55,16 @@ phases:
                 binaryExists: 'unzip'
         inputs:
           commands:
-              - sudo apt-get update
-              - sudo apt-get install -y unzip
+            - sudo apt-get update
+            - sudo apt-get install -y unzip
 
       - name: InstallUnzipYum
         action: ExecuteBash
         if:
           and:
-              - binaryExists: 'yum'
-              - not:
-                  binaryExists: 'unzip'
+            - binaryExists: 'yum'
+            - not:
+                binaryExists: 'unzip'
         inputs:
           commands:
               - sudo yum install -y unzip
@@ -73,10 +73,13 @@ phases:
         action: ExecuteBash
         if:
           and:
-              - binaryExists: 'zypper'
-              - not:
-                  binaryExists: 'unzip'
+            - stringEquals: 'test_string'
+              value: 'test_string'
+            # - numberEquals: 1
+            #   value: 1
         inputs:
           commands:
               - sudo zypper refresh
               - sudo zypper install -y unzip
+
+
