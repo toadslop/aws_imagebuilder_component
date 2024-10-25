@@ -1,0 +1,47 @@
+name: CopyFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+    - name: CopyingAFileLinux
+      action: CopyFile
+      inputs:
+        - source: /Sample/MyFolder/Sample.txt
+          destination: /MyFolder/destinationFile.txt
+
+    - name: CopyingAFileWindows
+      action: CopyFile
+      inputs:
+        - source: C:\MyFolder\Sample.txt
+          destination: C:\MyFolder\destinationFile.txt
+
+    - name: CopyingFileWithSourceFileNameLinux
+      action: CopyFile
+      inputs:
+        - source: /Sample/MyFolder/Sample.txt
+          destination: /MyFolder/
+
+    - name: CopyingFileWithSourceFileNameWindows
+      action: CopyFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample.txt
+          destination: C:\MyFolder\
+
+    - name: CopyingFilesWithWildCardLinux
+      action: CopyFile
+      inputs:
+        - source: /Sample/MyFolder/Sample*
+          destination: /MyFolder/
+
+    - name: CopyingFilesWithWildCardWindows
+      action: CopyFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample*
+          destination: C:\MyFolder\
+
+    - name: CopyingFilesWithoutOverwriteWindows
+      action: CopyFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample.txt
+          destination: C:\MyFolder\destinationFile.txt
+          overwrite: false

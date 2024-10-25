@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 
 mod append_file;
 mod assert;
+mod copy_file;
 mod delete_file;
 mod execute_bash;
 mod execute_binary;
@@ -13,6 +14,7 @@ mod web_download;
 
 pub use append_file::AppendFile;
 pub use assert::Assert;
+pub use copy_file::CopyFile;
 pub use delete_file::DeleteFile;
 pub use execute_bash::ExecuteBash;
 pub use execute_binary::ExecuteBinary;
@@ -35,4 +37,5 @@ pub enum Action {
     S3Upload(Vec<S3Upload>),
     WebDownload(Vec<WebDownload>),
     AppendFile(Vec<AppendFile>),
+    CopyFile(Vec<CopyFile>),
 }
