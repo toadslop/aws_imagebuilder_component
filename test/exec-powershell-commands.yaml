@@ -1,0 +1,20 @@
+name: ExitCode3010Example
+description: This shows how the exit code can be used to restart a system with ExecutePowerShell
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: RestartTrigger
+        action: ExecutePowerShell
+        inputs:
+          commands:
+            - |
+              $rebootIndicator = Join-Path -Path $env:SystemDrive -ChildPath 'reboot-indicator'
+              if (Test-Path -Path $rebootIndicator) {
+                Write-Host 'The reboot file exists. Deleting it and exiting with success.'
+                Remove-Item -Path $rebootIndicator -Force | Out-Null
+                [System.Environment]::Exit(0)
+              }
+              Write-Host 'The reboot file does not exist. Creating it and triggering a restart.'
+              New-Item -Path $rebootIndicator -ItemType File | Out-Null
+              [System.Environment]::Exit(3010)

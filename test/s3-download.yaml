@@ -1,0 +1,34 @@
+name: S3Download
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+    - name: DownloadMyFile
+      action: S3Download
+      inputs:
+        - source: s3://amzn-s3-demo-source-bucket/path/to/package.zip
+          destination: C:\myfolder\package.zip
+          expectedBucketOwner: 123456789022
+          overwrite: false
+        - source: s3://amzn-s3-demo-source-bucket/path/to/package.zip
+          destination: C:\myfolder\package.zip
+          expectedBucketOwner: 123456789022
+          overwrite: true
+        - source: s3://amzn-s3-demo-source-bucket/path/to/package.zip
+          destination: C:\myfolder\package.zip
+          expectedBucketOwner: 123456789022
+    - name: MyS3DownloadKeyprefix
+      action: S3Download
+      maxAttempts: 3
+      inputs:
+        - source: s3://amzn-s3-demo-source-bucket/path/to/*
+          destination: C:\myfolder\
+          expectedBucketOwner: 123456789022
+          overwrite: false
+        - source: s3://amzn-s3-demo-source-bucket/path/to/*
+          destination: C:\myfolder\
+          expectedBucketOwner: 123456789022
+          overwrite: true
+        - source: s3://amzn-s3-demo-source-bucket/path/to/*
+          destination: C:\myfolder\
+          expectedBucketOwner: 123456789022

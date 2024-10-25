@@ -5,16 +5,20 @@ mod delete_file;
 mod execute_bash;
 mod execute_binary;
 mod execute_document;
+mod execute_powershell;
 mod s3_download;
+mod s3_upload;
 
 pub use assert::Assert;
 pub use delete_file::DeleteFile;
 pub use execute_bash::ExecuteBash;
 pub use execute_binary::ExecuteBinary;
 pub use execute_document::ExecuteDocument;
+pub use execute_powershell::ExecutePowerShell;
 pub use s3_download::S3Download;
+pub use s3_upload::S3Upload;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(tag = "action", content = "inputs")]
 pub enum Action {
     Assert(Assert),
@@ -23,4 +27,6 @@ pub enum Action {
     ExecuteBinary(ExecuteBinary),
     DeleteFile(Vec<DeleteFile>),
     ExecuteDocument(ExecuteDocument),
+    ExecutePowerShell(ExecutePowerShell),
+    S3Upload(Vec<S3Upload>),
 }

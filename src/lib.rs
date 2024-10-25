@@ -20,7 +20,9 @@ pub struct Component {
     pub description: Option<String>,
     pub schema_version: SchemaVersion,
     pub phases: Vec<Phase>,
+    #[serde(default)]
     pub parameters: Vec<HashMap<String, Parameter>>,
+    #[serde(default)]
     pub constants: Vec<HashMap<String, Constant>>,
 }
 
@@ -132,16 +134,17 @@ impl AsMut<u32> for MaxAttempts {
 
 #[cfg(test)]
 mod test {
-    use std::fs::read_to_string;
-
     use crate::Component;
+    use std::fs::{read_dir, read_to_string};
 
     #[test]
     fn test() {
-        let test_yaml = read_to_string("./test/test.yaml").expect("Failed to load test file.");
-        let it: Component =
-            serde_yaml::from_str(&test_yaml).expect("Failed to deserialize test file");
-
-        println!("{it:?}");
+        for entry in read_dir("./test").expect("Failed to read the tests folder") {
+            let entry = entry.expect("failed to load the entry");
+            let yaml = read_to_string(entry.path())
+                .unwrap_or_else(|e| panic!("Failed to read {:?}: {e}", entry.file_name()));
+            let _: Component = serde_yaml::from_str(&yaml)
+                .unwrap_or_else(|e| panic!("Failed to deserialize {:?}: {e}", entry.file_name()));
+        }
     }
 }

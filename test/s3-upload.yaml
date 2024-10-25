@@ -1,0 +1,21 @@
+name: S3Download
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+    - name: MyS3UploadFile
+      action: S3Upload
+      onFailure: Abort
+      maxAttempts: 3
+      inputs:
+        - source: C:\myfolder\package.zip
+          destination: s3://amzn-s3-demo-destination-bucket/path/to/package.zip
+          expectedBucketOwner: 123456789022
+    - name: MyS3UploadMultipleFiles
+      action: S3Upload
+      onFailure: Abort
+      maxAttempts: 3
+      inputs:
+        - source: C:\myfolder\*
+          destination: s3://amzn-s3-demo-destination-bucket/path/to/
+          expectedBucketOwner: 123456789022

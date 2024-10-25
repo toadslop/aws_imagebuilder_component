@@ -1,0 +1,10 @@
+name: ExitCode3010Example
+description: This shows how the exit code can be used to restart a system with ExecutePowerShell
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: RestartTrigger
+        action: ExecutePowerShell
+        inputs:
+          file: "c:\\\\path\\to\\my\\file.ps1"

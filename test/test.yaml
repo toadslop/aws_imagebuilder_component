@@ -118,3 +118,9 @@ phases:
         inputs:
           - source: "s3://bucket/{{ loop.value }}"
             destination: "c:\\temp\\{{ loop.value }}"
+
+      - name: StringComparison
+        action: Assert
+        inputs:
+          stringEquals: '2.1.1'
+          value: '{{ validate.ApplicationVersion.outputs.stdout }}'
