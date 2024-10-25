@@ -8,6 +8,7 @@ mod execute_document;
 mod execute_powershell;
 mod s3_download;
 mod s3_upload;
+mod web_download;
 
 pub use assert::Assert;
 pub use delete_file::DeleteFile;
@@ -17,6 +18,7 @@ pub use execute_document::ExecuteDocument;
 pub use execute_powershell::ExecutePowerShell;
 pub use s3_download::S3Download;
 pub use s3_upload::S3Upload;
+pub use web_download::WebDownload;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(tag = "action", content = "inputs")]
@@ -29,4 +31,5 @@ pub enum Action {
     ExecuteDocument(ExecuteDocument),
     ExecutePowerShell(ExecutePowerShell),
     S3Upload(Vec<S3Upload>),
+    WebDownload(Vec<WebDownload>),
 }
