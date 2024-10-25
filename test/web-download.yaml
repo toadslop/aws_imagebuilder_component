@@ -1,0 +1,38 @@
+name: WebDownload
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+    - name: DownloadRemoteFile
+      action: WebDownload
+      maxAttempts: 3
+      inputs:
+        - source: https://testdomain/path/to/java14.zip
+          destination: C:\testfolder\package.zip
+    - name: DownloadRemoteFiles
+      action: WebDownload
+      maxAttempts: 3
+      inputs:
+        - source: https://testdomain/path/to/java14.zip
+          destination: /tmp/java14_renamed.zip
+        - source: https://testdomain/path/to/java14.zip
+          destination: /tmp/create_new_folder_and_add_java14_as_zip/
+    - name: DownloadRemoteMultipleProperties
+      action: WebDownload
+      maxAttempts: 3
+      inputs:
+        - source: https://testdomain/path/to/java14.zip
+          destination: C:\create_new_folder\java14_renamed.zip
+          overwrite: false
+        - source: https://testdomain/path/to/java14.zip
+          destination: C:\create_new_folder_and_add_java14_as_zip\
+          checksum: ac68bbf921d953d1cfab916cb6120864
+          algorithm: MD5
+          overwrite: true
+    - name: DownloadRemoteIgnoreValidation
+      action: WebDownload
+      maxAttempts: 3
+      inputs:
+        - source: https://www.bad-ssl.com/resource
+          destination: /tmp/downloads/
+          ignoreCertificateErrors: true

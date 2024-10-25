@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 pub struct S3Upload {
     source: String,
     destination: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     expected_bucket_owner: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     recurse: Option<bool>,
 }

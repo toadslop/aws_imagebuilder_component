@@ -1,22 +1,21 @@
 use conditional::If;
 use serde::{Deserialize, Serialize};
-use std::{
-    collections::HashMap,
-    ops::{Deref, DerefMut},
-};
+use std::collections::HashMap;
 
-mod action;
-mod conditional;
-mod r#loop;
+pub mod action;
+pub mod conditional;
+pub mod r#loop;
 
 pub use action::Action;
-pub use conditional::Conditional;
+pub use conditional::Expression;
 pub use r#loop::{Loop, LoopType};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Component {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     pub schema_version: SchemaVersion,
     pub phases: Vec<Phase>,
@@ -29,13 +28,16 @@ pub struct Component {
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 pub struct Parameter {
     r#type: ParamType,
+    #[serde(skip_serializing_if = "Option::is_none")]
     default: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 pub struct Constant {
     r#type: ParamType,
+    #[serde(skip_serializing_if = "Option::is_none")]
     default: Option<String>,
 }
 
@@ -74,12 +76,17 @@ pub enum PhaseName {
 #[serde(rename_all = "camelCase")]
 pub struct Step {
     name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     timeout_seconds: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     on_failure: Option<FailurePolicy>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     max_attempts: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     r#if: Option<If>,
     #[serde(flatten)]
     action: Action,
+    #[serde(skip_serializing_if = "Option::is_none")]
     r#loop: Option<Loop>,
 }
 
@@ -89,47 +96,6 @@ pub enum FailurePolicy {
     Abort,
     Continue,
     Ignore,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
-pub struct MaxAttempts(u32);
-
-impl MaxAttempts {
-    pub fn new(inner: u32) -> Self {
-        Self(inner)
-    }
-}
-
-impl Default for MaxAttempts {
-    fn default() -> Self {
-        Self(1)
-    }
-}
-
-impl Deref for MaxAttempts {
-    type Target = u32;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl DerefMut for MaxAttempts {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
-    }
-}
-
-impl AsRef<u32> for MaxAttempts {
-    fn as_ref(&self) -> &u32 {
-        &self.0
-    }
-}
-
-impl AsMut<u32> for MaxAttempts {
-    fn as_mut(&mut self) -> &mut u32 {
-        &mut self.0
-    }
 }
 
 #[cfg(test)]
@@ -143,8 +109,17 @@ mod test {
             let entry = entry.expect("failed to load the entry");
             let yaml = read_to_string(entry.path())
                 .unwrap_or_else(|e| panic!("Failed to read {:?}: {e}", entry.file_name()));
-            let _: Component = serde_yaml::from_str(&yaml)
+            let component: Component = serde_yaml::from_str(&yaml)
                 .unwrap_or_else(|e| panic!("Failed to deserialize {:?}: {e}", entry.file_name()));
+
+            let serialized = serde_yaml::to_string(&component)
+                .unwrap_or_else(|e| panic!("Failed to serialize {:?}: {e}", entry.file_name()));
+
+            println!("\n{serialized}\n");
+
+            if serialized.contains("null") {
+                panic!("Should not serialize 'None'")
+            }
         }
     }
 }

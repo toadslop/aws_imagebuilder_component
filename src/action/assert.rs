@@ -1,5 +1,5 @@
-use crate::Conditional;
+use crate::Expression;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
-pub struct Assert(Conditional);
+pub struct Assert(Expression);
