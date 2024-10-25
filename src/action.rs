@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+mod append_file;
 mod assert;
 mod delete_file;
 mod execute_bash;
@@ -10,6 +11,7 @@ mod s3_download;
 mod s3_upload;
 mod web_download;
 
+pub use append_file::AppendFile;
 pub use assert::Assert;
 pub use delete_file::DeleteFile;
 pub use execute_bash::ExecuteBash;
@@ -32,4 +34,5 @@ pub enum Action {
     ExecutePowerShell(ExecutePowerShell),
     S3Upload(Vec<S3Upload>),
     WebDownload(Vec<WebDownload>),
+    AppendFile(Vec<AppendFile>),
 }

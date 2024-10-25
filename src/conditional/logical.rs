@@ -1,6 +1,5 @@
-use serde::{Deserialize, Serialize};
-
 use super::{comparison::Comparison, Expression};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]

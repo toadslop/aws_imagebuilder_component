@@ -7,7 +7,7 @@ pub use comparison::Comparison;
 pub use logical::Logical;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
-pub struct If {
+pub struct Conditional {
     #[serde(flatten)]
     expression: Expression,
     #[serde(skip_serializing_if = "Option::is_none")]

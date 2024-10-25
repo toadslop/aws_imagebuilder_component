@@ -1,0 +1,41 @@
+name: AppendFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+    - name: AppendingFileWithOutEncodingLinux
+      action: AppendFile
+      inputs:
+        - path: ./Sample.txt
+          content: "The string to be appended to the file"
+
+    - name: AppendingFileWithOutEncodingWindows
+      action: AppendFile
+      inputs:
+        - path: C:\MyFolder\MyFile.txt
+          content: "The string to be appended to the file"
+
+
+    - name: AppendingFileWithEncodingLinux
+      action: AppendFile
+      inputs:
+        - path: /FolderName/SampleFile.txt
+          content: "The string to be appended to the file"
+          encoding: UTF-32
+
+    - name: AppendingFileWithEncodingWindows
+      action: AppendFile
+      inputs:
+        - path: C:\MyFolderName\SampleFile.txt
+          content: "The string to be appended to the file"
+          encoding: UTF-32
+
+    - name: AppendingEmptyStringLinux
+      action: AppendFile
+      inputs:
+        - path: /FolderName/SampleFile.txt
+
+    - name: AppendingEmptyStringWindows
+      action: AppendFile
+      inputs:
+        - path: C:\MyFolderName\SampleFile.txt

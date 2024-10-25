@@ -1,4 +1,4 @@
-use conditional::If;
+use conditional::Conditional;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -83,7 +83,7 @@ pub struct Step {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_attempts: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    r#if: Option<If>,
+    r#if: Option<Conditional>,
     #[serde(flatten)]
     action: Action,
     #[serde(skip_serializing_if = "Option::is_none")]
