@@ -1,0 +1,28 @@
+name: CreateFolder
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: CreatingFolderLinux
+      action: CreateFolder
+      inputs:
+        - path: /Sample/MyFolder/
+    - name: CreatingFolderWindows
+      action: CreateFolder
+      inputs:
+        - path: C:\MyFolder
+    - name: CreatingFolderWithFolderProperties
+      action: CreateFolder
+      inputs:
+        - path: /Sample/MyFolder/Sample/
+          owner: SampleOwnerName
+          group: SampleGroupName
+          permissions: 0777
+        - path: /Sample/MyFolder/SampleFoler/
+          permissions: 777
+    - name: CreatingFolderWithOverwrite
+      action: CreateFolder
+      inputs:
+        - path: /Sample/MyFolder/Sample/
+          overwrite: true

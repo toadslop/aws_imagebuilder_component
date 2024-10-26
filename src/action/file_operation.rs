@@ -11,7 +11,16 @@ pub struct FileOperation {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-pub struct CreateOperation {
+pub struct CreateFolder {
+    path: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    overwrite: Option<bool>,
+    #[serde(flatten)]
+    permissions: Permissions,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+pub struct CreateFile {
     #[serde(flatten)]
     file_details: FileOperation,
     #[serde(flatten)]

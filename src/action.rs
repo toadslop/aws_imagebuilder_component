@@ -1,4 +1,3 @@
-use file_operation::CreateOperation;
 use serde::{Deserialize, Serialize};
 
 mod assert;
@@ -19,6 +18,8 @@ pub use execute_bash::ExecuteBash;
 pub use execute_binary::ExecuteBinary;
 pub use execute_document::ExecuteDocument;
 pub use execute_powershell::ExecutePowerShell;
+pub use file_operation::CreateFile;
+pub use file_operation::CreateFolder;
 pub use file_operation::FileOperation;
 pub use move_operation::MoveOperation;
 pub use s3_download::S3Download;
@@ -40,5 +41,6 @@ pub enum Action {
     AppendFile(Vec<FileOperation>),
     CopyFile(Vec<MoveOperation>),
     CopyFolder(Vec<MoveOperation>),
-    CreateFile(Vec<CreateOperation>),
+    CreateFile(Vec<CreateFile>),
+    CreateFolder(Vec<CreateFolder>),
 }
