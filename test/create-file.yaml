@@ -1,0 +1,41 @@
+name: AppendFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: CreatingFileWithoutOverwriteLinux
+      action: CreateFile
+      inputs:
+        - path: /home/UserName/Sample.txt
+          content: The text content of the sample file.
+          overwrite: false
+
+    - name: CreatingFileWithoutOverwriteWindows
+      action: CreateFile
+      inputs:
+        - path: C:\Temp\Sample.txt
+          content: The text content of the sample file.
+          overwrite: false
+
+    - name: CreatingFileWithFileProperties
+      action: CreateFile
+      inputs:
+        - path: SampleFolder/Sample.txt
+          content: The text content of the sample file.
+          encoding: UTF-16
+          owner: Ubuntu
+          group: UbuntuGroup
+          permissions: 0777
+        - path: SampleFolder/SampleFile.txt
+          permissions: 755
+        - path: SampleFolder/TextFile.txt
+          encoding: UTF-16
+          owner: root
+          group: rootUserGroup
+
+    - name: CreatingFileWithoutFileProperties
+      action: CreateFile
+      inputs:
+        - path: ./Sample.txt
+        - path: Sample1.txt

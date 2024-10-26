@@ -1,12 +1,33 @@
+use crate::misc::StringOrNumber;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-pub struct AppendFile {
+pub struct FileOperation {
     path: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     content: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     encoding: Option<Encoding>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+pub struct CreateOperation {
+    #[serde(flatten)]
+    file_details: FileOperation,
+    #[serde(flatten)]
+    permissions: Permissions,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    overwrite: Option<bool>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
+pub struct Permissions {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    owner: Option<StringOrNumber>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    group: Option<StringOrNumber>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    permissions: Option<StringOrNumber>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
