@@ -2,31 +2,12 @@ use crate::misc::StringOrNumber;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-pub struct FileOperation {
+pub struct File {
     path: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     content: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     encoding: Option<Encoding>,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-pub struct CreateFolder {
-    path: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    overwrite: Option<bool>,
-    #[serde(flatten)]
-    permissions: Permissions,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-pub struct CreateFile {
-    #[serde(flatten)]
-    file_details: FileOperation,
-    #[serde(flatten)]
-    permissions: Permissions,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    overwrite: Option<bool>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]

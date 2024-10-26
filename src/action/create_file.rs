@@ -1,11 +1,12 @@
-use super::MoveOperation;
+use super::{file_system::Permissions, File};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
-#[serde(rename_all = "camelCase")]
-pub struct S3Download {
+pub struct CreateFile {
     #[serde(flatten)]
-    move_operation: MoveOperation,
+    file: File,
+    #[serde(flatten)]
+    permissions: Permissions,
     #[serde(skip_serializing_if = "Option::is_none")]
-    expected_bucket_owner: Option<u64>,
+    overwrite: Option<bool>,
 }
