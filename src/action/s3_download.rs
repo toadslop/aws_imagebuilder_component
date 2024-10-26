@@ -1,4 +1,4 @@
-use super::MoveOperation;
+use super::file_system::MoveOperation;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]

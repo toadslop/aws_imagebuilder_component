@@ -1,0 +1,55 @@
+name: MoveFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: MovingAFileLinux
+      action: MoveFile
+      inputs:
+        - source: /Sample/MyFolder/Sample.txt
+          destination: /MyFolder/destinationFile.txt
+
+    - name: MovingAFileWindows
+      action: MoveFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample.txt
+          destination: C:\MyFolder\destinationFile.txt
+
+    - name: MovingFileWithSourceFileNameLinux
+      action: MoveFile
+      inputs:
+        - source: /Sample/MyFolder/Sample.txt
+          destination: /MyFolder/
+
+    - name: MovingFileWithSourceFileNameWindows
+      action: MoveFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample.txt
+          destination: C:\MyFolder
+
+    - name: MovingFilesWithWildCardLinux
+      action: MoveFile
+      inputs:
+        - source: /Sample/MyFolder/Sample*
+          destination: /MyFolder/
+
+    - name: MovingFilesWithWildCardWindows
+      action: MoveFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample*
+          destination: C:\MyFolder
+
+    - name: MovingFilesWithoutOverwriteLinux
+      action: MoveFile
+      inputs:
+        - source: /Sample/MyFolder/Sample.txt
+          destination: /MyFolder/destinationFile.txt
+          overwrite: false
+
+    - name: MovingFilesWithoutOverwrite
+      action: MoveFile
+      inputs:
+        - source: C:\Sample\MyFolder\Sample.txt
+          destination: C:\MyFolder\destinationFile.txt
+          overwrite: false

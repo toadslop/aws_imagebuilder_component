@@ -1,0 +1,18 @@
+name: MoveFolder
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: MovingAFolderLinux
+      action: MoveFolder
+      inputs:
+        - source: /Sample/MyFolder/SourceFolder
+          destination: /MyFolder/destinationFolder
+
+    - name: MovingFoldersWithoutOverwriteWindows
+      action: MoveFolder
+      inputs:
+        - source: C:\Sample\MyFolder\SampleFolder
+          destination: C:\MyFolder\destinationFolder
+          overwrite: false
