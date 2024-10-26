@@ -1,0 +1,24 @@
+name: FileAndFolderPermissions
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: ModifyingFilePermissions
+      action: SetFilePermissions
+      inputs:
+        - path: /home/UserName/SampleFile.txt
+          permissions: 766
+
+    - name: SettingFolderPermissions
+      action: SetFolderPermissions
+      inputs:
+        - path: SampleFolder/
+          permissions: 0777
+
+    - name: SettingFolderPermissionsNoRecursive
+      action: SetFolderPermissions
+      inputs:
+        - path: /home/UserName/SampleFolder/
+          permissions: 777
+          recursive: false
