@@ -1,12 +1,11 @@
+use super::MoveOperation;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct WebDownload {
-    source: String,
-    destination: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    overwrite: Option<bool>,
+    #[serde(flatten)]
+    move_operation: MoveOperation,
     #[serde(skip_serializing_if = "Option::is_none")]
     checksum: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

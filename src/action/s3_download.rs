@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
+use super::MoveOperation;
+
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct S3Download {
-    source: String,
-    destination: String,
+    #[serde(flatten)]
+    move_operation: MoveOperation,
     #[serde(skip_serializing_if = "Option::is_none")]
     expected_bucket_owner: Option<u64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    overwrite: Option<bool>,
 }
