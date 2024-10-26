@@ -17,6 +17,7 @@ mod list_files;
 mod read_file;
 mod s3_download;
 mod s3_upload;
+mod set_file_encoding;
 mod web_download;
 
 pub use assert::Assert;
@@ -33,6 +34,7 @@ pub use list_files::ListFiles;
 pub use read_file::ReadFile;
 pub use s3_download::S3Download;
 pub use s3_upload::S3Upload;
+pub use set_file_encoding::SetFileEncoding;
 pub use web_download::WebDownload;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
@@ -58,4 +60,5 @@ pub enum Action {
     MoveFile(Vec<MoveOperation>),
     MoveFolder(Vec<MoveOperation>),
     ReadFile(Vec<ReadFile>),
+    SetFileEncoding(Vec<SetFileEncoding>),
 }

@@ -1,0 +1,16 @@
+name: SetFileEncoding
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: SettingFileEncodingProperty
+      action: SetFileEncoding
+      inputs:
+        - path: /home/UserName/SampleFile.txt
+          encoding: UTF-16
+
+    - name: SettingFileEncodingProperty
+      action: SetFileEncoding
+      inputs:
+        - path: /home/UserName/SampleFile.txt
