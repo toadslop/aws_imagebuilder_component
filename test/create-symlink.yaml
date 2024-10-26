@@ -1,0 +1,18 @@
+name: CreateSymlink
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: CreatingSymbolicLinkWithForce
+      action: CreateSymlink
+      inputs:
+        - path: /Folder2/Symboliclink.txt
+          target: /Folder/Sample.txt
+          force: true
+
+    - name: CreatingSymbolicLinkWithOutForce
+      action: CreateSymlink
+      inputs:
+        - path: Symboliclink.txt
+          target: /Folder/Sample.txt

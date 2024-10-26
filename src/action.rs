@@ -1,8 +1,10 @@
+use create_symlink::CreateSymlink;
 use serde::{Deserialize, Serialize};
 
 mod assert;
 mod create_file;
 mod create_folder;
+mod create_symlink;
 mod delete_file;
 mod execute_bash;
 mod execute_binary;
@@ -45,4 +47,5 @@ pub enum Action {
     CopyFolder(Vec<MoveOperation>),
     CreateFile(Vec<CreateFile>),
     CreateFolder(Vec<CreateFolder>),
+    CreateSymlink(Vec<CreateSymlink>),
 }
