@@ -1,0 +1,48 @@
+name: CopyFolder
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: CopyingAFolderLinux
+      action: CopyFolder
+      inputs:
+        - source: /Sample/MyFolder/SampleFolder
+          destination: /MyFolder/destinationFolder
+
+    - name: CopyingAFolderWindows
+      action: CopyFolder
+      inputs:
+        - source: C:\Sample\MyFolder\SampleFolder
+          destination: C:\MyFolder\destinationFolder
+
+    - name: CopyingFolderSourceFolderNameLinux
+      action: CopyFolder
+      inputs:
+        - source: /Sample/MyFolder/SourceFolder
+          destination: /MyFolder/
+
+    - name: CopyingFolderSourceFolderNameWindows
+      action: CopyFolder
+      inputs:
+        - source: C:\Sample\MyFolder\SampleFolder
+          destination: C:\MyFolder\
+
+    - name: CopyingFoldersWithWildCardLinux
+      action: CopyFolder
+      inputs:
+        - source: /Sample/MyFolder/Sample*
+          destination: /MyFolder/
+
+    - name: CopyingFoldersWithWildCardWindows
+      action: CopyFolder
+      inputs:
+        - source: C:\Sample\MyFolder\Sample*
+          destination: C:\MyFolder\
+
+    - name: CopyingFoldersWithoutOverwrite
+      action: CopyFolder
+      inputs:
+        - source: C:\Sample\MyFolder\SourceFolder
+          destination: C:\MyFolder\destinationFolder
+          overwrite: false
