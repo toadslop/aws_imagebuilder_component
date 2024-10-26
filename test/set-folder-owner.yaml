@@ -1,0 +1,25 @@
+name: SetFolderOwner
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: SettingFolderPropertyWithOutGroup
+      action: SetFolderOwner
+      inputs:
+        - path: /SampleFolder/
+          owner: LinuxUser
+
+    - name: SettingFolderPropertyWithOutRecursively
+      action: SetFolderOwner
+      inputs:
+        - path: /SampleFolder/
+          owner: LinuxUser
+          recursive: false
+
+    - name: SettingFolderPropertyWithGroup
+      action: SetFolderOwner
+      inputs:
+        - path: /SampleFolder/
+          owner: LinuxUser
+          group: LinuxUserGroup

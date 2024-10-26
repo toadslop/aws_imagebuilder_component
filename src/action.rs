@@ -1,5 +1,3 @@
-use create_symlink::CreateSymlink;
-use file_system::MoveOperation;
 use serde::{Deserialize, Serialize};
 
 mod assert;
@@ -19,11 +17,13 @@ mod s3_download;
 mod s3_upload;
 mod set_file_encoding;
 mod set_file_owner;
+mod set_folder_owner;
 mod web_download;
 
 pub use assert::Assert;
 pub use create_file::CreateFile;
 pub use create_folder::CreateFolder;
+pub use create_symlink::CreateSymlink;
 pub use delete_file::DeleteFile;
 pub use delete_folder::DeleteFolder;
 pub use execute_bash::ExecuteBash;
@@ -31,12 +31,14 @@ pub use execute_binary::ExecuteBinary;
 pub use execute_document::ExecuteDocument;
 pub use execute_powershell::ExecutePowerShell;
 pub use file_system::File;
+pub use file_system::MoveOperation;
 pub use list_files::ListFiles;
 pub use read_file::ReadFile;
 pub use s3_download::S3Download;
 pub use s3_upload::S3Upload;
 pub use set_file_encoding::SetFileEncoding;
 pub use set_file_owner::SetFileOwner;
+pub use set_folder_owner::SetFolderOwner;
 pub use web_download::WebDownload;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
@@ -64,4 +66,5 @@ pub enum Action {
     ReadFile(Vec<ReadFile>),
     SetFileEncoding(Vec<SetFileEncoding>),
     SetFileOwner(Vec<SetFileOwner>),
+    SetFolderOwner(Vec<SetFolderOwner>),
 }
