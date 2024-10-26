@@ -1,0 +1,18 @@
+name: SetFileOwner
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: SettingFileOwnerPropertyNoGroup
+      action: SetFileOwner
+      inputs:
+        - path: /home/UserName/SampleText.txt
+          owner: LinuxUser
+
+    - name: SettingFileOwnerProperty
+      action: SetFileOwner
+      inputs:
+        - path: /home/UserName/SampleText.txt
+          owner: LinuxUser
+          group: LinuxUserGroup
