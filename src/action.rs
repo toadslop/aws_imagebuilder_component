@@ -14,6 +14,7 @@ mod execute_document;
 mod execute_powershell;
 mod file_system;
 mod list_files;
+mod read_file;
 mod s3_download;
 mod s3_upload;
 mod web_download;
@@ -29,6 +30,7 @@ pub use execute_document::ExecuteDocument;
 pub use execute_powershell::ExecutePowerShell;
 pub use file_system::File;
 pub use list_files::ListFiles;
+pub use read_file::ReadFile;
 pub use s3_download::S3Download;
 pub use s3_upload::S3Upload;
 pub use web_download::WebDownload;
@@ -55,4 +57,5 @@ pub enum Action {
     ListFiles(Vec<ListFiles>),
     MoveFile(Vec<MoveOperation>),
     MoveFolder(Vec<MoveOperation>),
+    ReadFile(Vec<ReadFile>),
 }

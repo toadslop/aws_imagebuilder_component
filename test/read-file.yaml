@@ -1,0 +1,22 @@
+name: ReadFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: ReadingFileLinux
+      action: ReadFile
+      inputs:
+        - path: /home/UserName/SampleFile.txt
+
+    - name: ReadingFileWithFileEncoding
+      action: ReadFile
+      inputs:
+        - path: /FolderName/SampleFile.txt
+          encoding: UTF-32
+
+    - name: ReadingFileToConsole
+      action: ReadFile
+      inputs:
+        - path: /home/UserName/SampleFile.txt
+          printFileContent: true
