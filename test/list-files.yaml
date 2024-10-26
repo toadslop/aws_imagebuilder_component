@@ -1,0 +1,33 @@
+name: ListFiles
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: ListingFilesInSampleFolderLinux
+      action: ListFiles
+      inputs:
+        - path: /Sample/MyFolder/Sample
+
+    - name: ListingFilesInSampleFolderWindows
+      action: ListFiles
+      inputs:
+        - path: C:\Sample\MyFolder\Sample
+
+    - name: ListingFilesWithEndingWithLogLinux
+      action: ListFiles
+      inputs:
+        - path: /Sample/MyFolder/
+          fileNamePattern: "*log"
+
+    - name: ListingFilesWithEndingWithLogWindows
+      action: ListFiles
+      inputs:
+        - path: C:\Sample\MyFolder\
+          fileNamePattern: "*log"
+
+    - name: ListingFilesRecursively
+      action: ListFiles
+      inputs:
+        - path: /Sample/MyFolder/
+          recursive: true
