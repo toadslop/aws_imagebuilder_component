@@ -6,6 +6,7 @@ mod create_file;
 mod create_folder;
 mod create_symlink;
 mod delete_file;
+mod delete_folder;
 mod execute_bash;
 mod execute_binary;
 mod execute_document;
@@ -20,6 +21,7 @@ pub use assert::Assert;
 pub use create_file::CreateFile;
 pub use create_folder::CreateFolder;
 pub use delete_file::DeleteFile;
+pub use delete_folder::DeleteFolder;
 pub use execute_bash::ExecuteBash;
 pub use execute_binary::ExecuteBinary;
 pub use execute_document::ExecuteDocument;
@@ -48,4 +50,5 @@ pub enum Action {
     CreateFile(Vec<CreateFile>),
     CreateFolder(Vec<CreateFolder>),
     CreateSymlink(Vec<CreateSymlink>),
+    DeleteFolder(Vec<DeleteFolder>),
 }

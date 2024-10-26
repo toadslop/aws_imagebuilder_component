@@ -1,0 +1,27 @@
+name: DeleteFolder
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: DeletingFolderWithForceOptionLinux
+      action: DeleteFolder
+      inputs:
+        - path: /Sample/MyFolder/Sample/
+          force: true
+
+    - name: DeletingFolderWithForceOptionWindows
+      action: DeleteFolder
+      inputs:
+        - path: C:\Sample\MyFolder\Sample\
+          force: true
+
+    - name: DeletingFolderWithOutForceLinux
+      action: DeleteFolder
+      inputs:
+        - path: /Sample/MyFolder/Sample/
+
+    - name: DeletingFolderWithOutForce
+      action: DeleteFolder
+      inputs:
+        - path: C:\Sample\MyFolder\Sample\
