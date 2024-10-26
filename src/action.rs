@@ -11,6 +11,7 @@ mod execute_binary;
 mod execute_document;
 mod execute_powershell;
 mod file_system;
+mod install_msi;
 mod list_files;
 mod read_file;
 mod s3_download;
@@ -34,6 +35,7 @@ pub use execute_document::ExecuteDocument;
 pub use execute_powershell::ExecutePowerShell;
 pub use file_system::File;
 pub use file_system::MoveOperation;
+pub use install_msi::InstallMSI;
 pub use list_files::ListFiles;
 pub use read_file::ReadFile;
 pub use s3_download::S3Download;
@@ -73,4 +75,5 @@ pub enum Action {
     SetFolderOwner(Vec<SetFolderOwner>),
     SetFolderPermissions(Vec<SetFolderPermissions>),
     SetFilePermissions(Vec<SetFilePermissions>),
+    InstallMSI(InstallMSI),
 }
