@@ -1,0 +1,35 @@
+name: AppendFile
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+
+    - name: LocalPathUninstaller
+      action: UninstallMSI
+      inputs:
+        path: C:\sample.msi
+        logFile: C:\msilogs\local-path-uninstall.log
+        logOptions: '*VX'
+        reboot: Allow
+        properties:
+          COMPANYNAME: '"Amazon Web Services"'
+        ignoreAuthenticodeSignatureErrors: true
+        allowUnsignedInstaller: true
+
+    - name: S3PathUninstaller
+      action: UninstallMSI
+      inputs:
+        path: s3://<bucket-name>/sample.msi
+        logFile: s3-path-uninstall.log
+        reboot: Force
+        ignoreAuthenticodeSignatureErrors: false
+        allowUnsignedInstaller: true
+
+    - name: WebPathUninstaller
+      action: UninstallMSI
+      inputs:
+        path: https://<some-path>/sample.msi
+        logFile: web-path-uninstall.log
+        reboot: Skip
+        ignoreAuthenticodeSignatureErrors: true
+        allowUnsignedInstaller: false

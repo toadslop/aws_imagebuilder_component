@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 #[serde(rename_all = "camelCase")]
-pub struct InstallMSI {
+pub struct MsiAction {
     path: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     reboot: Option<Reboot>,
