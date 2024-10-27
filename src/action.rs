@@ -23,6 +23,7 @@ mod set_file_permissions;
 mod set_folder_owner;
 mod set_folder_permissions;
 mod set_registry;
+mod update_os;
 mod web_download;
 
 pub use assert::Assert;
@@ -49,6 +50,7 @@ pub use set_file_permissions::SetFilePermissions;
 pub use set_folder_owner::SetFolderOwner;
 pub use set_folder_permissions::SetFolderPermissions;
 pub use set_registry::SetRegistry;
+pub use update_os::UpdateOS;
 pub use web_download::WebDownload;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
@@ -83,4 +85,5 @@ pub enum Action {
     UninstallMSI(MsiAction),
     Reboot(Reboot),
     SetRegistry(Vec<SetRegistry>),
+    UpdateOS(UpdateOS),
 }
