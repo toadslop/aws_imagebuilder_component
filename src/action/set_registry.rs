@@ -1,4 +1,3 @@
-use either::Either;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
@@ -21,8 +20,10 @@ pub enum RegistryType {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[serde(untagged)]
 pub enum RegistryValue {
-    Number(f64),
+    Float(f64),
     String(String),
-    Array(Vec<Either<String, f64>>),
+    Strings(Vec<String>),
+    Floats(Vec<f64>),
 }

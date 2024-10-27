@@ -82,5 +82,5 @@ pub enum Action {
     InstallMSI(MsiAction),
     UninstallMSI(MsiAction),
     Reboot(Reboot),
-    SetRegistry(SetRegistry),
+    SetRegistry(Vec<SetRegistry>),
 }
