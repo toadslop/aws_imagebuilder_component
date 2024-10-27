@@ -14,6 +14,7 @@ mod file_system;
 mod list_files;
 mod msi_action;
 mod read_file;
+mod reboot;
 mod s3_download;
 mod s3_upload;
 mod set_file_encoding;
@@ -38,6 +39,7 @@ pub use file_system::MoveOperation;
 pub use list_files::ListFiles;
 pub use msi_action::MsiAction;
 pub use read_file::ReadFile;
+pub use reboot::Reboot;
 pub use s3_download::S3Download;
 pub use s3_upload::S3Upload;
 pub use set_file_encoding::SetFileEncoding;
@@ -77,4 +79,5 @@ pub enum Action {
     SetFilePermissions(Vec<SetFilePermissions>),
     InstallMSI(MsiAction),
     UninstallMSI(MsiAction),
+    Reboot(Reboot),
 }
