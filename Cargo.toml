@@ -3,6 +3,7 @@ name = "aws_imagebuilder_component"
 version = "0.1.0"
 edition = "2021"
 description = "Types for the AWS ImageBuilder component yaml definition"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 either = { version = "1", features = ["serde"]}
