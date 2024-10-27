@@ -1,4 +1,4 @@
-use crate::misc::StringOrNumber;
+use crate::misc::{self, User};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
@@ -20,12 +20,12 @@ pub struct MoveOperation {
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]
 pub struct Permissions {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    owner: Option<StringOrNumber>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    group: Option<StringOrNumber>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    permissions: Option<StringOrNumber>,
+    #[serde(skip_serializing_if = "Option::is_none", flatten)]
+    owner: Option<User>,
+    #[serde(skip_serializing_if = "Option::is_none", flatten)]
+    group: Option<User>,
+    #[serde(skip_serializing_if = "Option::is_none", flatten)]
+    permissions: Option<misc::Permissions>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Default)]

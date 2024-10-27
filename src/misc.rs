@@ -1,8 +1,5 @@
-use serde::{Deserialize, Serialize};
+use either::Either;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
-#[serde(untagged)]
-pub enum StringOrNumber {
-    String(String),
-    Number(u64),
-}
+pub type User = Either<String, u32>;
+pub type Group = User;
+pub type Permissions = Either<String, u32>;
